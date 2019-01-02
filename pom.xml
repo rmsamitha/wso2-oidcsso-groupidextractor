@@ -36,26 +36,6 @@
             <artifactId>gson</artifactId>
             <version>2.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.base</artifactId>
-            <version>4.4.11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20140107</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.utils</artifactId>
-            <version>4.4.11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.identity.user.ws</groupId>
-            <artifactId>org.wso2.carbon.um.ws.api</artifactId>
-            <version>5.1.4</version>
-        </dependency>
     </dependencies>
 
     <repositories>

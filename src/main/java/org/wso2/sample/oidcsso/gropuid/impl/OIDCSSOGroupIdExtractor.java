@@ -12,7 +12,6 @@ import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.apimgt.api.NewPostLoginExecutor;
 import org.wso2.carbon.apimgt.hostobjects.oidc.internal.AuthenticationToken;
 import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,8 +62,8 @@ public class OIDCSSOGroupIdExtractor implements NewPostLoginExecutor {
                 // if there are multiple goupids, nimbus returns a JSONArray object
                 else if ((customClaims.get("organization")) instanceof JSONArray){
                     String unprocessedOrg;
-                    net.minidev.json.JSONArray jsonArray;
-                    jsonArray = (net.minidev.json.JSONArray) customClaims.get("organization");
+                    JSONArray jsonArray;
+                    jsonArray = (JSONArray) customClaims.get("organization");
                     //convert JSONArray to a string ( ["org-wso2","org-apim"] ) and process for expected format
                     unprocessedOrg = (jsonArray.toJSONString()).substring(1,(jsonArray.toJSONString()).length()-1);
                     organization = unprocessedOrg.replace("\"","");
@@ -73,7 +72,6 @@ public class OIDCSSOGroupIdExtractor implements NewPostLoginExecutor {
                     log.warn("Unable to fetch the organization values from the id token");
                 }
             }
-
             if (organization != null) {
                 if (organization.contains(",")){
                     groupIdArray = organization.split(",");

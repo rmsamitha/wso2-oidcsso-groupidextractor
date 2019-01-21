@@ -4,8 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nimbusds.jwt.JWT;
+import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
-import com.nimbusds.jwt.ReadOnlyJWTClaimsSet;
+//import com.nimbusds.jwt.ReadOnlyJWTClaimsSet;
 import net.minidev.json.JSONArray;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,8 +27,8 @@ public class OIDCSSOGroupIdExtractor implements NewPostLoginExecutor {
         try {
             AuthenticationToken oidcAuthenticationToken = getAuthenticationToken(loginResponse);
             JWT idToken = JWTParser.parse(oidcAuthenticationToken.getIdTokenValue());
-            ReadOnlyJWTClaimsSet idClaims = idToken.getJWTClaimsSet();
-            Map<String, Object> customClaims = new HashMap<>(idClaims.getAllClaims());
+            JWTClaimsSet idClaims = idToken.getJWTClaimsSet();
+            Map<String, Object> customClaims = new HashMap<>(idClaims.getClaims());
 
             if (customClaims.containsKey("organization") && (customClaims.get("organization") != null)){
                 organization = (String) customClaims.get("organization");
@@ -52,8 +53,8 @@ public class OIDCSSOGroupIdExtractor implements NewPostLoginExecutor {
         try {
             AuthenticationToken oidcAuthenticationToken = getAuthenticationToken(loginResponse);
             JWT idToken = JWTParser.parse(oidcAuthenticationToken.getIdTokenValue());
-            ReadOnlyJWTClaimsSet idClaims = idToken.getJWTClaimsSet();
-            Map<String, Object> customClaims = new HashMap<>(idClaims.getAllClaims());
+            JWTClaimsSet idClaims = idToken.getJWTClaimsSet();
+            Map<String, Object> customClaims = new HashMap<>(idClaims.getClaims());
 
             if (customClaims.containsKey("organization") && (customClaims.get("organization") != null)) {
                 if ((customClaims.get("organization")) instanceof String){
